@@ -1,0 +1,6 @@
+﻿VMC = coin -> (choc -> VMC [] bisc -> VMC);
+CHOCLOV = choc -> CHOCLOV [] coin -> choc -> CHOCLOV;
+
+System1 = VMC || CHOCLOV;
+
+#assert System1 deadlockfree;
