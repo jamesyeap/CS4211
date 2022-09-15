@@ -1,0 +1,21 @@
+﻿P = p.sits -> p.gold.up -> p.silver.up -> p.gold.down -> p.silver.down -> p.leaves -> P;
+Q = q.sits -> q.gold.up -> q.silver.up -> q.gold.down -> q.silver.down -> q.leaves -> Q;
+
+G = p.gold.up -> p.gold.down | q.gold.up -> q.gold.down;
+S = p.silver.up -> p.silver.down | q.silver.up -> q.silver.down;
+
+EAT_WITH_DEADLOCK = P || Q || G || S;
+
+// possible solution 1
+// 		con: may have an issue with fairness and liveness; process P or Q may starve as choice is non-deterministic
+FOOT = p.sits -> p.leaves -> FOOT | q.sits -> q.leaves -> FOOT;
+EAT_WITHOUT_DEADLOCK_V1 = EAT_WITH_DEADLOCK || FOOT;
+
+// possible solution 2
+//		con: too restrictive; processes P and Q will always execute -> but what if Q does not need to execute as much as P?
+FAIRFOOT = p.sits -> p.leaves -> q.sits -> q.leaves -> FAIRFOOT;
+EAT_WITHOUT_DEADLOCK_V2 = EAT_WITH_DEADLOCK || FAIRFOOT;
+
+/* TERMINOLOGIES */
+// fairness: equality of running time between processes
+// liveness: how many processes starve
