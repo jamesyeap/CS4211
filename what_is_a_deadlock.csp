@@ -1,0 +1,19 @@
+﻿#alphabet A {x, y, z};
+#alphabet B {x, y, z};
+
+/* Choose one:
+	- v1 will cause a deadlock
+	- v2 will not
+*/
+A = (x -> y -> z -> A); // v1
+//A = (x -> y -> z -> A) [] (y -> A); // v2
+
+B = y -> B;
+
+// the operator || is called parallel composition (page 81 of PAT Manual)
+// 	set of events to be synchronized on:
+// 		-> CASE 1: without explicit alphabet declaration: [y]
+//		-> CASE 2: with explicit alphabet declaration: [x, y, z]
+Combined = A || B;
+
+#assert Combined deadlockfree;

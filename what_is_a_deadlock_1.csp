@@ -1,0 +1,9 @@
+﻿//#alphabet A {p, x, y};
+//#alphabet B {p, x, y};
+
+A = p -> x -> A;
+B = p -> y -> B;
+
+Combined = A || B;
+
+#assert Combined deadlockfree;

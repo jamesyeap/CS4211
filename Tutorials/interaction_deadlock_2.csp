@@ -1,0 +1,8 @@
+﻿//#alphabet VM {coin, choc, bisc};
+//#alphabet BISCLOV {coin, choc, bisc};
+
+VM = coin -> choc -> VM;
+BISCLOV = coin -> bisc -> BISCLOV;
+
+System5 = VM || BISCLOV;
+#assert System5 deadlockfree;

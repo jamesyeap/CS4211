@@ -1,4 +1,7 @@
-﻿VMC = coin -> (choc -> VMC [] bisc -> VMC);
+﻿//#alphabet VMC {coin, choc, bisc};
+//#alphabet CHOCLOV {coin, choc, bisc};
+
+VMC = coin -> (choc -> VMC [] bisc -> VMC);
 CHOCLOV = choc -> CHOCLOV [] coin -> choc -> CHOCLOV;
 
 System1 = VMC || CHOCLOV;

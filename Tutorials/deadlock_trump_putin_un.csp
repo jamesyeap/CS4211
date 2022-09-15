@@ -1,0 +1,12 @@
+﻿DT = getboard -> playchess -> DT [] getracket -> playtennis -> DT;
+VP = getpieces -> playchess -> VP [] getball -> playtennis -> VP;
+
+PlayWithoutUN = DT || VP;
+
+#assert PlayWithoutUN deadlockfree;
+
+UN = getpieces -> getboard -> UN [] getracket -> getball -> UN;
+
+PlayWithUN = DT || VP || UN;
+
+#assert PlayWithUN deadlockfree;

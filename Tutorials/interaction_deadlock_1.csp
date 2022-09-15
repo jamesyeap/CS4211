@@ -1,0 +1,8 @@
+﻿//#alphabet GREEDY {coin, choc, bisc};
+//#alphabet VMC {coin, choc, bisc};
+
+GREEDY = choc -> GREEDY [] bisc -> GREEDY;
+VMC = coin -> (choc -> VMC [] bisc -> VMC);
+
+System4 = VMC || GREEDY;
+#assert System4 deadlockfree;
